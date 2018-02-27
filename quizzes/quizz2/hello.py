@@ -9,6 +9,7 @@ info_list={}
 def hello():
     return "Hello!!",200
 
+#Post request
 @app.route('/users',methods=['POST'])
 def new_user():
      global id
@@ -20,12 +21,14 @@ def new_user():
      users_infos.append(users_info)
      return jsonify({'User Information' : users_infos}),201
 
+#Get request
 @app.route('/users/<id>',methods=['GET'])
 def out(id):
     for i in range(len(users_infos)):
         if int(users_infos[i]['id']) == int(id):
             return jsonify({'User Information':users_infos[i]}),200
-     
+
+#Delete request
 @app.route('/users/<id>',methods=['DELETE'])
 def delete_id(id):
     k=0
